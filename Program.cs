@@ -5,9 +5,11 @@ namespace AppClientes;
 
 class Program
 {
+    
     static ClienteRepositorio _clienteRepositorio = new ClienteRepositorio();
     static void Main(string[] args)
     {
+        _clienteRepositorio.LerDadosClientes(); //Inicia subindo Lista clientes.txt
         while (true)
         {
             Menu();     
@@ -34,7 +36,8 @@ class Program
             case 2: _clienteRepositorio.ExibirListaDeClientes();break;
             case 3: _clienteRepositorio.EditarCliente();break;
             case 4: _clienteRepositorio.ExcluirCliente();break;
-            case 0: Environment.Exit(0);break;
+            case 5: _clienteRepositorio.GravarDadosClientes();
+            Environment.Exit(0);break;
             
             
             default: Console.WriteLine("Valor inválido. Digite nova opção!");break;
