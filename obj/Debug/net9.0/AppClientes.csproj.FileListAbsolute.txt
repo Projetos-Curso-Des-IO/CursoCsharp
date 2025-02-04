@@ -12,3 +12,4 @@ D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\refint\AppCl
 D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\AppClientes.pdb
 D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\AppClientes.genruntimeconfig.cache
 D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\ref\AppClientes.dll
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\AppClientes.sourcelink.json

@@ -139,6 +139,31 @@ public class ClienteRepositorio
     }
 
 
+    public void GravarDadosClientes()
+    {
+        var json = System.Text.Json.JsonSerializer.Serialize(listaClientes);
+
+        File.WriteAllText("clientes.txt", json);
+    }
+
+
+    public void LerDadosClientes()
+    {
+        if(File.Exists("clientes.txt"))
+        {
+            var dados = File.ReadAllText("clientes.txt");
+
+            var clientesArquivo = System.Text.Json.JsonSerializer.Deserialize<List<Cliente>>(dados);
+
+            listaClientes.AddRange(clientesArquivo);
+        }
+        
+    }
+
+
+
+
+
     public string SolicitarNome()
     {
         Console.Write("Nome do cliente:");
@@ -171,7 +196,5 @@ public class ClienteRepositorio
         }
     }
     
-
-
 
 }
