@@ -1,10 +1,10 @@
 using Cadastro;
-
 namespace Repositorio;
 
 public class ClienteRepositorio
 {
     public List<Cliente> listaClientes = new List<Cliente>();
+
 
     public void ImprimirCliente(Cliente cliente)
     {
@@ -21,16 +21,23 @@ public class ClienteRepositorio
         Console.Clear();
         try
         {
-            if (listaClientes != null)
+            if (!File.Exists("clientes.txt"))
+            {
+                Console.WriteLine("Arquivo inexistente.");
+                Console.WriteLine("------------------[ENTER]");
+                return;
+            }
+
+            if (listaClientes.Count != 0)
             {
                 foreach (var clientes in listaClientes)
-                {   
+                {
                     ImprimirCliente(clientes);
-                }       
+                }
             }
             else
             {
-                Console.WriteLine("Lista de clientes está vazia...");
+                Console.WriteLine("Lista de clientes está vazia...[ENTER]");
             }
         }
         catch (Exception ex)
@@ -44,66 +51,56 @@ public class ClienteRepositorio
     public void CadastrarClientes()
     {
         Console.Clear();
+        try
+        {
+            Cliente cliente = new Cliente();
+            cliente.Id = listaClientes.Count() + 1;
+            cliente.Nome = SolicitarNome();
+            cliente.DataNascimento = SolicitarDataNascimento();
+            cliente.Desconto = SolicitarDesconto();
+            cliente.CadastradoEm = DateTime.Now;
 
-        Console.Write("Nome do cliente:");
-        string nome = Console.ReadLine();
+            listaClientes.Add(cliente);
 
-        Console.Write("Data de nascimento:");
-        DateOnly dataNascimento = DateOnly.Parse(Console.ReadLine());
-        
-        Console.Write("Desconto:");
-        decimal desconto = decimal.Parse(Console.ReadLine());
-
-        Cliente cliente = new Cliente();
-        cliente.Id = listaClientes.Count() + 1;
-        cliente.Nome = nome;
-        cliente.DataNascimento = dataNascimento;
-        cliente.CadastradoEm = DateTime.Now;
-        cliente.Desconto = desconto;
-
-        listaClientes.Add(cliente);
-
-        Console.WriteLine("Cliente cadastrado com sucesso!!");
-        ImprimirCliente(cliente);
-        Console.ReadKey();
+            Console.WriteLine("Cliente cadastrado com sucesso!!");
+            GravarDadosClientes();
+            ImprimirCliente(cliente);
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine("Erro não identificado..." + exception.Message);
+        }
 
 
-        // using (var escrever = new StreamWriter("clientes.txt"))
-        // {
-        //     foreach (var clientes in listaClientes)
-        //     {
-        //         escrever.WriteLine($"{clientes.Id},{clientes.Nome},{clientes.DataNascimento:yyyy-MM-dd},{clientes.CadastradoEm:yyyy-MM-dd HH:mm:ss},{clientes.Desconto}");    
-        //     }
-        // }
     }
 
 
     public void EditarCliente()
-    {        
+    {
         try
         {
             Console.WriteLine("Informe o ID do cliente: ");
-            if(!int.TryParse(Console.ReadLine(), out int idPesquisa))
+            if (!int.TryParse(Console.ReadLine(), out int idPesquisa))
             {
                 Console.WriteLine("ID digitado inválido. Por favor informe um ID válido.");
                 return;
             }
 
-                Cliente clienteEncontrado = listaClientes.FirstOrDefault(c => c.Id == idPesquisa);
-                if(clienteEncontrado == null)
-                {
-                    Console.WriteLine("Cliente não encontado.");
-                    return;
-                }
+            Cliente clienteEncontrado = listaClientes.FirstOrDefault(c => c.Id == idPesquisa);
+            if (clienteEncontrado == null)
+            {
+                Console.WriteLine("Cliente não encontado.");
+                return;
+            }
 
-                clienteEncontrado.Nome = SolicitarNome();
-                clienteEncontrado.DataNascimento = SolicitarDataNascimento();
-                clienteEncontrado.CadastradoEm = DateTime.Now;
-                clienteEncontrado.Desconto = SolicitarDesconto();
+            clienteEncontrado.Nome = SolicitarNome();
+            clienteEncontrado.DataNascimento = SolicitarDataNascimento();
+            clienteEncontrado.CadastradoEm = DateTime.Now;
+            clienteEncontrado.Desconto = SolicitarDesconto();
 
-                Console.WriteLine("Cliente alterado com sucesso!!");
-                ImprimirCliente(clienteEncontrado);
-                Console.ReadKey();
+            Console.WriteLine("Cliente alterado com sucesso!!");
+            ImprimirCliente(clienteEncontrado);
+            Console.ReadKey();
         }
         catch (Exception exception)
         {
@@ -123,13 +120,13 @@ public class ClienteRepositorio
                 return;
             }
 
-            if(!listaClientes.Any(c => c.Id == idPesquisa))
+            if (!listaClientes.Any(c => c.Id == idPesquisa))
             {
                 Console.WriteLine("Cliente não encontrados.");
                 return;
             }
             listaClientes.RemoveAll(c => c.Id == idPesquisa);
-            Console.WriteLine("Cliente removido com sucesso."); 
+            Console.WriteLine("Cliente removido com sucesso.");
             Console.WriteLine("-------------------[ENTER].");
         }
         catch (Exception exception)
@@ -142,22 +139,21 @@ public class ClienteRepositorio
     public void GravarDadosClientes()
     {
         var json = System.Text.Json.JsonSerializer.Serialize(listaClientes);
-
         File.WriteAllText("clientes.txt", json);
+        Console.WriteLine("Dados gravados com sucesso.");
     }
 
 
     public void LerDadosClientes()
     {
-        if(File.Exists("clientes.txt"))
+        if (File.Exists("clientes.txt"))
         {
             var dados = File.ReadAllText("clientes.txt");
-
             var clientesArquivo = System.Text.Json.JsonSerializer.Deserialize<List<Cliente>>(dados);
 
             listaClientes.AddRange(clientesArquivo);
         }
-        
+
     }
 
 
@@ -175,11 +171,11 @@ public class ClienteRepositorio
         while (true)
         {
             Console.Write("Data de nascimento (yyyy-MM-dd): ");
-            if(DateOnly.TryParse(Console.ReadLine(), out DateOnly dataNascimento))
+            if (DateOnly.TryParse(Console.ReadLine(), out DateOnly dataNascimento))
             {
-               return dataNascimento;
+                return dataNascimento;
             }
-           Console.WriteLine("Data inválida. Por favor, insira no formato yyyy-MM-dd."); 
+            Console.WriteLine("Data inválida. Por favor, insira no formato yyyy-MM-dd.");
         }
     }
 
@@ -188,13 +184,13 @@ public class ClienteRepositorio
         while (true)
         {
             Console.Write("Desconto:");
-            if(decimal.TryParse(Console.ReadLine(), out decimal desconto))
+            if (decimal.TryParse(Console.ReadLine(), out decimal desconto))
             {
-                return desconto;    
+                return desconto;
             }
             Console.WriteLine("Valor inválido. Por favor insira um valor válido.");
         }
     }
-    
+
 
 }
