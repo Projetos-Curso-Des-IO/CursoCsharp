@@ -1,0 +1,14 @@
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\bin\Debug\net9.0\AppClientes.exe
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\bin\Debug\net9.0\AppClientes.deps.json
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\bin\Debug\net9.0\AppClientes.runtimeconfig.json
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\bin\Debug\net9.0\AppClientes.dll
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\bin\Debug\net9.0\AppClientes.pdb
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\AppClientes.GeneratedMSBuildEditorConfig.editorconfig
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\AppClientes.AssemblyInfoInputs.cache
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\AppClientes.AssemblyInfo.cs
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\AppClientes.csproj.CoreCompileInputs.cache
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\AppClientes.dll
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\refint\AppClientes.dll
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\AppClientes.pdb
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\AppClientes.genruntimeconfig.cache
+D:\CURSOS-2025\Cursos-Desenvolvedor.io\AppClientes\obj\Debug\net9.0\ref\AppClientes.dll
